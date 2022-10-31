@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long int
+#define pb push_back
 void solve(){
 	string a,b;
 	cin>>a>>b;
