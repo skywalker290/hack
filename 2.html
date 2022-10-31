@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  
+  <body>
+    <table width="100%" border=1px bgcolor="lightblue">
+      <td> 
+      <h4 id="s1" onclick="f1()"> Shreya </h4>  
+      <h4 id="s2" onclick="f2()"> Paakhi </h4> 
+      <h4 id="s3" onclick="f3()"> Kanishk</h4>
+      </td>
+      <td> 
+        <p id="b1", style="display: none"> <img src= "image link"> Shreya is a kind-hearted and fun person who loves dogs.</p>
+        <p id="b2", style="display: none"> <img src= "image link"> Paakhi is a cutie, obviously. </p>
+        
+        <p id="b3", style="display: none"> <img src= "image link"> Kanishk is an outgoing introvert. </p>
+      </td>
+    <script>
+      function f1() {
+    document.getElementById("b1").style.display = "block";
+    document.getElementById("s1").style.color = "red";
+}
+      function f2() {
+    document.getElementById("b2").style.display = "block";
+    document.getElementById("s2").style.color = "lightpink";
+}
+      function f3() {
+    document.getElementById("b3").style.display = "block";
+    document.getElementById("s3").style.color = "green";
+  }
+    </script>
+  </body>
+</html>
