@@ -26,6 +26,15 @@ void solve(){
 		cout<<"YES"<<endl;
 
 }
+
+
+void show(){
+	cout<<"tell mw my name ";
+	int n;
+	cin>>n;
+	cout<<"It was a trap;";
+	cout<<"ITS CRAZY";
+}
 int32_t main(){
 	int t;
 	cin>>t;
