@@ -62,6 +62,7 @@ return head1;
 }
 int main(void)
 {
+  int nrewww=0;
 Node *head = NULL;
 head = createList();
 return 0;
