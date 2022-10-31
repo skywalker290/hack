@@ -1,5 +1,12 @@
 #include<stdio.h>
 #include<conio.h>
+
+
+void dis(){
+ printf("Hello");
+}
+
+
 void main( )
 {
  int a,b,c;
