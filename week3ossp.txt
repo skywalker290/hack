@@ -1,0 +1,165 @@
+1.
+#include <stdio.h>
+
+#include <unistd.h> #include <sys/time.h>
+
+#include <sys/resource.h> #include <stdlib.h>
+
+#include <string.h> 
+int main()
+int p_id=getpid(),
+Pp_id=getppid();
+nice_val = getpriority (PRIO_PROCESS, 0); 
+char tty_buf[256];
+uid t ruid getuid(); uid t euid=geteuid();
+printf("Process Id : %d\n",p_id);
+printf("Parent Process Id: %d\n",pp_id);
+printf("Nice Number: %d\n", nice_vall; printf("Terminal or TTY: %s\n", tty_buf);
+printf("RUID: %d\n", ruid);
+printf("EUID: %d\n", euid);
+return 0
+
+--------------------------
+2.
+
+#include<stdio.h>
+#include<sys/types.h>
+#include<unistd.h>
+int main()
+{
+printf("Before fork: %d\n\n", getpid());
+int pid= fork();
+if(pid>0)
+
+{
+printf("I am the father : %d of \n", getpid());
+}
+else if(pid==0)
+{
+printf("Child : %d\n", getpid());
+printf("I am the child : %d\n", getpid());
+}
+else
+{
+printf("Failed to create child process");
+}
+return 0;
+}
+
+3.
+
+4.
+------------------------------------------------------------------
+5.
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+float perform_operation(char operation, float num1, float num2) {
+switch (operation) {
+case 'a':
+return num1 + num2;
+case 's':
+return num1 - num2;
+
+case 'm':
+return num1 * num2;
+case 'd':
+if (num2 == 0) {
+fprintf(stderr, "Division by zero!\n");
+exit(1);
+}
+return num1 / num2;
+default:
+fprintf(stderr, "Invalid operation\n");
+exit(1);
+}
+}
+void worker(char operation, float num1, float num2) {
+float result = perform_operation(operation, num1, num2);
+printf("%c: %.2f %c %.2f = %.2f\n", operation, num1, operation, num2, result);
+}
+
+int main() {
+char operations[] = {'a', 's', 'm', 'd'};
+float num1 = 10.0, num2 = 5.0;
+pid_t child_pids[sizeof(operations) / sizeof(operations[0])];
+for (int i = 0; i < sizeof(operations) / sizeof(operations[0]); i++) {
+pid_t pid = fork();
+if (pid == 0) {
+// Child process
+worker(operations[i], num1, num2);
+exit(0);
+} else if (pid > 0) {
+// Parent process
+child_pids[i] = pid;
+} else {
+// Fork error
+perror("Fork failed");
+exit(1);
+}
+}
+for (int i = 0; i < sizeof(operations) / sizeof(operations[0]); i++) {
+int status;
+
+waitpid(child_pids[i], &status, 0);
+}
+printf("All child processes have completed.\n");
+return 0;
+}
+-----------------------------------------------------------
+6.
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+int main() {
+int pipe1[2]; // Pipe for communication between parent and child 1
+int pipe2[2]; // Pipe for communication between parent and child 2
+if (pipe(pipe1) == -1 || pipe(pipe2) == -1) {
+perror("Pipe creation failed");
+return 1;
+}
+// Create two child processes
+pid_t child1_pid = fork();
+if (child1_pid == 0) {
+// Child process 1
+close(pipe1[1]); // Close write end of pipe1
+char message[100];
+read(pipe1[0], message, sizeof(message));
+printf("Child 1 received: %s", message);
+close(pipe1[0]);
+exit(0);
+} else if (child1_pid > 0) {
+pid_t child2_pid = fork();
+if (child2_pid == 0) {
+// Child process 2
+close(pipe2[1]); // Close write end of pipe2
+char message[100];
+
+read(pipe2[0], message, sizeof(message));
+printf("Child 2 received: %s", message);
+close(pipe2[0]);
+exit(0);
+} else if (child2_pid > 0) {
+// Parent process
+close(pipe1[0]); // Close read end of pipe1
+close(pipe2[0]); // Close read end of pipe2
+char message1[] = "Hello from Parent to Child 1!\n";
+char message2[] = "Hello from Parent to Child 2!\n";
+write(pipe1[1], message1, strlen(message1) + 1);
+write(pipe2[1], message2, strlen(message2) + 1);
+close(pipe1[1]);
+close(pipe2[1]);
+wait(NULL); // Wait for child 1 to complete
+wait(NULL); // Wait for child 2 to complete
+} else {
+perror("Child 2 fork failed");
+return 1;
+}
+} else {
+perror("Child 1 fork failed");
+return 1;
+}
+return 0;
+}
