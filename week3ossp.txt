@@ -17,7 +17,7 @@ printf("Parent Process Id: %d\n",pp_id);
 printf("Nice Number: %d\n", nice_vall; printf("Terminal or TTY: %s\n", tty_buf);
 printf("RUID: %d\n", ruid);
 printf("EUID: %d\n", euid);
-return 0
+return 0sdfad
 
 --------------------------
 2.
