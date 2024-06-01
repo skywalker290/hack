@@ -1,0 +1,74 @@
+Virtualization
+├── Definition
+│   └── Overview of Virtualization
+├── Types
+│   ├── Application Virtualization
+│   │   └── Server, Desktop, DaaS
+│   ├── Desktop Virtualization
+│   │   └── VDI, RDS, DaaS
+│   ├── Server Virtualization
+│   │   └── Bare Metal, Hosted
+│   ├── Storage Virtualization
+│   └── Network Virtualization
+├── Hypervisor
+│   ├── Types
+│   │   ├── Type 1 (Bare Metal)
+│   │   └── Type 2 (Hosted)
+│   └── Emulation vs. Full vs. Para-virtualization
+└── Cloud Computing
+    ├── Integration
+    │   └── Benefits of Integration
+    ├── Provisioning
+    │   └── Cloud Servers
+    └── Advantages
+
+
+
+KVM (Kernel-based Virtual Machine)
+│
+├── Introduction
+│   ├── Definition
+│   ├── Purpose
+│   ├── Components
+│   └── Relation to Linux
+│
+├── How it Works
+│   ├── Type of Hypervisor
+│   ├── Linux Kernel Components
+│   ├── VM Implementation
+│   └── KVM Architecture
+│       ├── QEMU
+│       │   ├── Device Emulation
+│       │   └── Services from Host Kernel
+│       ├── Libvirt
+│       │   ├── Overview
+│       │   ├── Internals
+│       │   └── Use Cases
+│       └── KVM Kernel Module
+│           ├── Features
+│           ├── Installation
+│           └── Commands
+│
+├── KVM Installation
+│   ├── Hardware Support Verification
+│   ├── Package Installation
+│   ├── User Account Setup
+│   └── Verification
+│
+├── Creating a Virtual Machine
+│   ├── Using Command Line (virt-install)
+│   └── Using Virt Manager GUI
+│
+├── Live VM Migration
+│   ├── Benefits
+│   ├── Process
+│   └── Design Considerations
+│       ├── Migrating Memory
+│       └── Local Resources
+│           ├── Network
+│           └── Storage
+│
+└── Additional Information
+    ├── Live VM Migration Scenarios
+    └── How It Works
+

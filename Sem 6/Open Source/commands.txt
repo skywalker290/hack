@@ -1,0 +1,43 @@
+<<<<KVM Commands>>>>
+
+# Command to check CPU support for virtualization
+egrep -c '(svm|vmx)' /proc/cpuinfo
+
+# Command to check if virtualization technology is enabled
+sudo kvm-ok
+
+# Commands to install required packages for KVM
+sudo apt update
+sudo apt-get install qemu-kvm libvirt-bin bridge-utils virt-manager
+
+# Commands for adding user to libvirt and kvm groups
+sudo adduser 'username' libvirt
+sudo adduser '[username]' kvm
+
+# Command to confirm successful installation
+virsh list --all
+sudo systemctl status libvirtd
+
+# Commands for managing virtual machines
+# To list running virtual machines
+virsh list
+# To start a virtual machine
+virsh start <guestname>
+# To start a virtual machine at boot
+virsh autostart <guestname>
+# To reboot a virtual machine
+virsh reboot <guestname>
+# To save the state of a virtual machine
+virsh save <guestname> save-my.state
+# To restore a saved virtual machine
+virsh restore save-my.state
+# To shut down a virtual machine
+virsh shutdown <guestname>
+# To mount a CDROM device in a virtual machine
+virsh attach-disk <guestname> /dev/cdrom /media/cdrom
+# To change the definition of a guest domain
+virsh edit <guestname>
+
+# Command to install virt-manager
+sudo apt install virt-manager
+
